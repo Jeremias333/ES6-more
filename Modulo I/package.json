@@ -11,6 +11,6 @@
     "@babel/preset-env": "^7.9.0"
   },
   "scripts": {
-    "dev": "babel ./src/vetores/main.js -o ./bundle.js -w"
+    "dev": "babel ./src/valores-padroes/main.js -o ./bundle.js -w"
   }
 }

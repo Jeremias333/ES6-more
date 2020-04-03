@@ -19,7 +19,14 @@ const filter = arr.filter((item) => { //retorna todos itens que dentro de uma se
 
 console.log(filter);
 
+//arrow function exemplo:
 
 const find = arr.find((item) => {//retorna um item passado na verificação, caso não ache retornará undefined
 	return item === 2;
 });
+
+const findNew = arr.find(item => item === 2);
+
+//arrow function não pode retornar objeto depois da setinha. OU:
+
+const teste = () => ({ nome: "Jeremias"});
