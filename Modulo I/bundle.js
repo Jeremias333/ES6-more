@@ -1,48 +1,69 @@
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-//REST ...var é basicamente o restante de algo.
-function apresentarParamentros(a, b) {
-  for (var _len = arguments.length, params = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    params[_key - 2] = arguments[_key];
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var User = /*#__PURE__*/function () {
+  function User(email, password) {
+    _classCallCheck(this, User);
+
+    this.email = email;
+    this.password = password;
   }
 
-  return params;
-}
+  _createClass(User, [{
+    key: "isAdmin",
+    value: function isAdmin() {
+      return false;
+    }
+  }]);
 
-console.log(apresentarParamentros(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+  return User;
+}();
 
-function soma() {
-  for (var _len2 = arguments.length, params = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    params[_key2] = arguments[_key2];
+var Admin = /*#__PURE__*/function (_User) {
+  _inherits(Admin, _User);
+
+  var _super = _createSuper(Admin);
+
+  function Admin(email, password) {
+    _classCallCheck(this, Admin);
+
+    return _super.call(this, email, password);
   }
 
-  return params.reduce(function (total, next) {
-    return total + next;
-  });
-}
+  _createClass(Admin, [{
+    key: "isAdmin",
+    value: function isAdmin() {
+      return true;
+    }
+  }]);
 
-console.log(soma(1, 2)); //SPREAD utiliza o que e simplifica variaveis que já existem.
+  return Admin;
+}(User);
 
-var arr1 = [1, 2, 3];
-var arr2 = [4, 5, 6];
-var arr3 = [].concat(arr1, arr2);
-console.log(arr3); // // /// ////////////////
-
-var usuario1 = {
-  nome: "Jeremias",
-  idade: 23,
-  empresa: "Accentury"
-};
-
-var usuario2 = _objectSpread({}, usuario1, {
-  nome: "Jere"
-}); // o SPREAD pega tudo do objeto e sobre põe o que for passado
-
-
-console.log(usuario2);
+var user1 = new User("jeremiasprogrammer@gmail.com", "1234567");
+var admin1 = new Admin("sorafinalform8@gmail.com", "1234567");
+console.log(user1.email, user1.password);
+console.log(admin1.email, admin1.password);
+console.log(user1.isAdmin());
+console.log(admin1.isAdmin());

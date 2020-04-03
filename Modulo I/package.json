@@ -12,6 +12,6 @@
     "@babel/preset-env": "^7.9.0"
   },
   "scripts": {
-    "dev": "babel ./src/rest-e-spread/main.js -o ./bundle.js -w"
+    "dev": "babel ./src/exercises/01/main.js -o ./bundle.js -w"
   }
 }
